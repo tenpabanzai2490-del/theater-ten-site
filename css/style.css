@@ -168,6 +168,21 @@ img {
   color: var(--sub-lighter);
 }
 
+.site-footer .sns-links {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.site-footer .sns-links a {
+  font-size: 11.5px;
+  color: var(--sub-light);
+}
+
+.site-footer .sns-links a:hover {
+  opacity: 0.6;
+}
+
 /* ---------- Placeholder art ---------- */
 
 .placeholder {
