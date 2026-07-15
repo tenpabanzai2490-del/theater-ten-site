@@ -168,19 +168,44 @@ img {
   color: var(--sub-lighter);
 }
 
+.site-footer .sns-label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sub-lighter);
+  margin-top: 18px;
+}
+
 .site-footer .sns-links {
   display: flex;
-  gap: 16px;
+  gap: 10px;
   margin-top: 10px;
 }
 
 .site-footer .sns-links a {
-  font-size: 11.5px;
-  color: var(--sub-light);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  color: var(--ink);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.site-footer .sns-links a svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
 }
 
 .site-footer .sns-links a:hover {
-  opacity: 0.6;
+  background: var(--accent-red);
+  border-color: var(--accent-red);
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 /* ---------- Placeholder art ---------- */
