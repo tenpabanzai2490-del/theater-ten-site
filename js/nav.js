@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var header = document.querySelector(".site-header");
+  var header = document.querySelector("[data-nav]");
   var toggle = document.querySelector(".nav-toggle");
   if (!header || !toggle) return;
 

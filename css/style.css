@@ -1,4 +1,6 @@
-/* Theater TEN Company — shared styles */
+/* Theater TEN Company — shared styles
+   注記: 「劇団紹介」ページのみ意図的に旧トンマナ(白背景・中央寄せ)を据え置き。
+   それ以外のページは新聞・チラシ的レイアウト(マストヘッド/Z型/番号コラム)を採用。 */
 
 :root {
   --bg: #efece5;
@@ -7,11 +9,19 @@
   --sub: #555;
   --sub-light: #777;
   --sub-lighter: #999;
+  --sub-warm: #4a4740;
+  --sub-warm-light: #7a766d;
+  --sub-warm-lighter: #9a968d;
   --border: rgba(0, 0, 0, 0.08);
   --border-soft: rgba(0, 0, 0, 0.06);
+  --border-heavy: rgba(0, 0, 0, 0.25);
+  --border-col: rgba(0, 0, 0, 0.12);
   --accent-blue: oklch(48% 0.08 250);
   --accent-red: oklch(48% 0.1 35);
   --accent-red-bright: oklch(52% 0.1 35);
+  --accent-cta: oklch(58% 0.12 35);
+  --dark-bg: #1a1a1a;
+  --dark-fg: #f2efe9;
   --placeholder-a: #ddd8cc;
   --placeholder-b: #e8e4d9;
   --placeholder-note: #8a8474;
@@ -40,38 +50,6 @@ img {
 
 .serif {
   font-family: "Shippori Mincho", serif;
-}
-
-/* ---------- Header (inner pages) ---------- */
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-}
-
-.site-header .logo {
-  font-family: "Shippori Mincho", serif;
-  font-weight: 700;
-  font-size: 22px;
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-}
-
-.site-nav {
-  display: flex;
-  gap: 28px;
-  font-size: 13px;
-}
-
-.nav-link {
-  color: var(--sub-dark);
 }
 
 .nav-link:hover {
@@ -116,34 +94,50 @@ img {
   top: 7px;
 }
 
-/* ---------- Page title block ---------- */
-
-.page-title {
-  padding: 80px 40px 20px;
-}
-
-.page-title.narrow {
-  max-width: 720px;
-}
-
 .eyebrow {
   font-size: 12px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
 }
 
-.page-title h1 {
-  font-family: "Shippori Mincho", serif;
-  font-weight: 600;
-  font-size: 36px;
-  margin: 14px 0 0;
+/* ---------- Placeholder art ---------- */
+
+.placeholder {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--placeholder-a),
+    var(--placeholder-a) 12px,
+    var(--placeholder-b) 12px,
+    var(--placeholder-b) 24px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* ---------- Footer ---------- */
+.placeholder span {
+  font: 11px ui-monospace, monospace;
+  color: var(--placeholder-note);
+  text-align: center;
+  padding: 8px;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-block;
+  padding: 10px 26px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+}
+
+/* ---------- Footer(全ページ共通) ---------- */
 
 .site-footer {
-  padding: 36px 40px;
-  border-top: 1px solid var(--border);
+  padding: 26px 40px;
+  border-top: none;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -208,276 +202,50 @@ img {
   transform: translateY(-2px);
 }
 
-/* ---------- Placeholder art ---------- */
-
-.placeholder {
-  background: repeating-linear-gradient(
-    45deg,
-    var(--placeholder-a),
-    var(--placeholder-a) 12px,
-    var(--placeholder-b) 12px,
-    var(--placeholder-b) 24px
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.placeholder span {
-  font: 11px ui-monospace, monospace;
-  color: var(--placeholder-note);
-  text-align: center;
-  padding: 8px;
-}
-
-/* ---------- Buttons ---------- */
-
-.btn {
-  display: inline-block;
-  padding: 10px 26px;
-  background: var(--ink);
-  color: #fff;
-  font-size: 12.5px;
-  letter-spacing: 0.06em;
-}
-
 /* ============================================================
-   TOP PAGE
+   旧トンマナ(劇団紹介ページ専用)
    ============================================================ */
 
-.hero {
-  position: relative;
-  width: 100%;
-  height: 560px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.hero .placeholder {
-  position: absolute;
-  inset: 0;
-}
-
-.hero-photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-}
-
-.hero-top {
-  position: absolute;
+.site-header {
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 12px;
-  padding: 24px 40px;
-}
-
-.hero-logo {
-  font-family: "Shippori Mincho", serif;
-  font-weight: 700;
-  font-size: 26px;
-  letter-spacing: 0.05em;
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.82);
-  padding: 10px 20px;
-  border-radius: 2px;
-  white-space: nowrap;
-  align-self: flex-start;
-}
-
-.hero-nav {
-  display: flex;
-  gap: 26px;
-  font-size: 12.5px;
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.72);
-  padding: 8px 18px;
-  border-radius: 2px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-.hero-copy {
-  position: relative;
-  z-index: 1;
-  padding: 40px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
-}
-
-.hero-copy .catch {
-  font-family: "Shippori Mincho", serif;
-  font-weight: 600;
-  font-size: 40px;
-  line-height: 1.45;
-  color: #fff;
-  letter-spacing: 0.03em;
-}
-
-.hero-copy .sub {
-  font-size: 13.5px;
-  color: #f0ece3;
-  margin-top: 12px;
-  font-weight: 300;
-  max-width: 460px;
-  line-height: 1.8;
-}
-
-.top-bar {
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
 }
 
-.top-bar .since {
-  font-size: 12px;
-  letter-spacing: 0.24em;
-  color: var(--accent-red-bright);
-  text-transform: uppercase;
-}
-
-.card-links {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.card-links a {
-  padding: 30px 26px;
-  border-right: 1px solid var(--border);
-  height: 120px;
-  display: flex;
-  align-items: flex-end;
-}
-
-.card-links a:last-child {
-  border-right: none;
-}
-
-.card-links a:nth-child(odd) {
-  background: repeating-linear-gradient(
-    45deg,
-    #e9e3d6,
-    #e9e3d6 10px,
-    #f0ebe0 10px,
-    #f0ebe0 20px
-  );
-}
-
-.card-links a:nth-child(even) {
-  background: repeating-linear-gradient(
-    45deg,
-    #e2ded4,
-    #e2ded4 10px,
-    #eae5da 10px,
-    #eae5da 20px
-  );
-}
-
-.card-links .label {
+.site-header .logo {
   font-family: "Shippori Mincho", serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--ink);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
-/* ============================================================
-   PERFORMANCES PAGE
-   ============================================================ */
-
-.section {
-  padding: 20px 40px 60px;
+.site-nav {
+  display: flex;
+  gap: 28px;
+  font-size: 13px;
 }
 
-.section h2 {
+.page-title {
+  padding: 80px 40px 20px;
+}
+
+.page-title.narrow {
+  max-width: 720px;
+}
+
+.page-title h1 {
   font-family: "Shippori Mincho", serif;
   font-weight: 600;
-  font-size: 18px;
-  margin: 0 0 20px;
+  font-size: 36px;
+  margin: 14px 0 0;
 }
-
-.upcoming-list {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
-.perf-card {
-  width: 340px;
-  max-width: 100%;
-  background: #fff;
-  border: 1px solid var(--border);
-}
-
-.perf-card .placeholder {
-  height: 200px;
-}
-
-.perf-card .body {
-  padding: 20px;
-}
-
-.perf-card .title {
-  font-family: "Shippori Mincho", serif;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.perf-card .meta {
-  font-size: 12.5px;
-  color: var(--sub-light);
-  margin-top: 8px;
-  line-height: 1.8;
-}
-
-.archive {
-  padding: 20px 40px 90px;
-  border-top: 1px solid var(--border);
-}
-
-.archive h2 {
-  margin: 36px 0 20px;
-}
-
-.archive-table {
-  display: flex;
-  flex-direction: column;
-}
-
-.archive-row {
-  display: grid;
-  grid-template-columns: 100px 1fr 200px;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--border-soft);
-  font-size: 13.5px;
-  gap: 8px;
-}
-
-.archive-row.head {
-  padding: 16px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 12px;
-  color: var(--sub-lighter);
-  letter-spacing: 0.06em;
-}
-
-.archive-row .year,
-.archive-row .venue {
-  color: var(--sub-light);
-}
-
-/* ============================================================
-   ABOUT PAGE
-   ============================================================ */
 
 .about-intro {
   padding: 80px 40px 30px;
@@ -549,108 +317,505 @@ img {
 }
 
 /* ============================================================
-   MEMBERS PAGE
+   新トンマナ(トップ/公演情報/メンバー紹介/アクセス/お問い合わせ)
    ============================================================ */
 
-.member-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  padding: 20px 40px 90px;
+.masthead-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
 }
 
-.member .portrait {
+.masthead {
+  border-bottom: 3px solid var(--ink);
+  padding: 20px 40px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.masthead .logo {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.masthead.top .logo {
+  font-size: clamp(22px, 4vw, 30px);
+}
+
+.masthead .since {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: #666;
+  text-transform: uppercase;
+  text-align: right;
+  line-height: 1.7;
+  flex-shrink: 0;
+}
+
+.subnav {
+  border-bottom: 1px solid var(--border-heavy);
+  padding: 10px 40px;
+  display: flex;
+  gap: 34px;
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  flex-wrap: wrap;
+}
+
+/* --- feature (Z-lead) block --- */
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  border-bottom: 1px solid var(--border-heavy);
+}
+
+.feature-grid.reverse {
+  grid-template-columns: 1fr 1.1fr;
+}
+
+.feature-text {
+  padding: 48px 40px 40px;
+  border-right: 1px solid var(--border-heavy);
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-text .kicker {
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.feature-text h1 {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 700;
+  font-size: clamp(38px, 4.5vw, 56px);
+  line-height: 1.22;
+  margin: 0;
+}
+
+.feature-text h1.hero-catch {
+  font-size: clamp(40px, 5vw, 64px);
+}
+
+.feature-text .lead {
+  font-size: 13.5px;
+  line-height: 2.1;
+  color: var(--sub-warm);
+  font-weight: 300;
+  margin-top: 26px;
+  max-width: 440px;
+}
+
+.feature-text .lead.bordered {
+  border-top: 1px solid var(--border-col);
+  padding-top: 20px;
+}
+
+.feature-text .cta-inline {
+  margin-top: auto;
+  padding-top: 32px;
+  font-size: 13.5px;
+  letter-spacing: 0.06em;
+  color: var(--accent-blue);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+}
+
+.feature-text .cta-inline:hover {
+  opacity: 0.85;
+}
+
+.feature-photo {
+  position: relative;
+  min-height: 300px;
+}
+
+.feature-photo.tall {
+  min-height: 480px;
+}
+
+.feature-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feature-photo .caption {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  background: rgba(26, 26, 26, 0.82);
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 7px 12px;
+}
+
+/* --- simple page head (members page) --- */
+
+.page-head-v2 {
+  padding: 44px 40px 30px;
+  border-bottom: 1px solid var(--border-heavy);
+}
+
+.page-head-v2 .kicker {
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.page-head-v2 h1 {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 700;
+  font-size: clamp(38px, 4.5vw, 56px);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.note-text {
+  font-size: 13px;
+  color: var(--sub-warm-light);
+  line-height: 2;
+  margin-top: 20px;
+}
+
+/* --- contents grid (top page numbered nav) --- */
+
+.contents-label {
+  padding: 16px 40px 8px;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.contents-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border-heavy);
+  border-bottom: 1px solid var(--border-heavy);
+}
+
+.contents-grid a {
+  padding: 26px;
+  border-right: 1px solid var(--border-col);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 150px;
+  transition: background 0.15s;
+}
+
+.contents-grid a:last-child {
+  border-right: none;
+}
+
+.contents-grid a:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.contents-grid .num {
+  font-family: "Shippori Mincho", serif;
+  font-size: 13px;
+  color: var(--accent-red-bright);
+}
+
+.contents-grid .label {
+  font-family: "Shippori Mincho", serif;
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: auto;
+}
+
+.contents-grid .desc {
+  font-size: 11.5px;
+  color: var(--sub-warm-light);
+  line-height: 1.7;
+}
+
+/* --- CTA bar --- */
+
+.cta-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 40px;
+  background: var(--dark-bg);
+  color: var(--dark-fg);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cta-bar .msg {
+  font-size: 13px;
+  color: rgba(242, 239, 233, 0.7);
+}
+
+.cta-bar .cta {
+  padding: 12px 30px;
+  background: var(--accent-cta);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  transition: opacity 0.15s;
+}
+
+.cta-bar .cta:hover {
+  opacity: 0.85;
+}
+
+/* --- performances: upcoming row + archive --- */
+
+.upcoming-row {
+  border-top: 1px solid var(--border-heavy);
+  border-bottom: 1px solid var(--border-heavy);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.upcoming-row .cell {
+  padding: 28px 26px;
+  border-right: 1px solid var(--border-col);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: background 0.15s;
+}
+
+.upcoming-row .cell:last-child {
+  border-right: none;
+}
+
+.upcoming-row .cell:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.upcoming-row .cell .photo {
+  height: 150px;
+}
+
+.upcoming-row .cell .title {
+  font-family: "Shippori Mincho", serif;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.upcoming-row .cell .meta {
+  font-size: 12px;
+  color: var(--sub-warm-light);
+  line-height: 1.8;
+}
+
+.upcoming-row .cell .ticket-link {
+  font-size: 12px;
+  color: var(--accent-blue);
+  font-weight: 500;
+}
+
+.upcoming-row .cell.empty {
+  align-items: center;
+  justify-content: center;
+  color: var(--sub-warm-lighter);
+  font-size: 12px;
+  line-height: 1.9;
+  text-align: center;
+}
+
+.archive-v2 {
+  padding: 0 40px 60px;
+}
+
+.archive-v2 .head {
+  display: grid;
+  grid-template-columns: 100px 1fr 220px;
+  padding: 14px 0;
+  border-bottom: 2px solid var(--ink);
+  font-size: 11px;
+  color: #666;
+  letter-spacing: 0.06em;
+}
+
+.archive-v2 .row {
+  display: grid;
+  grid-template-columns: 100px 1fr 220px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border-col);
+  font-size: 13.5px;
+  transition: background 0.15s;
+  gap: 8px;
+}
+
+.archive-v2 .row:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.archive-v2 .row .year {
+  color: var(--accent-blue);
+  font-family: "Shippori Mincho", serif;
+}
+
+.archive-v2 .row .title {
+  font-family: "Shippori Mincho", serif;
+  font-size: 15px;
+}
+
+.archive-v2 .row .venue {
+  color: var(--sub-warm-light);
+}
+
+/* --- members grid --- */
+
+.members-v2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--border-heavy);
+}
+
+.members-v2 .cell {
+  padding: 32px 28px;
+  border-right: 1px solid var(--border-col);
+  border-bottom: 1px solid var(--border-col);
+}
+
+.members-v2 .photo {
   width: 100%;
   max-width: 168px;
   aspect-ratio: 1;
   overflow: hidden;
 }
 
-.member .portrait img {
+.members-v2 .photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.member .name {
-  font-family: "Shippori Mincho", serif;
-  font-weight: 600;
-  font-size: 16px;
-  margin-top: 14px;
+.members-v2 .head-line {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 16px;
 }
 
-.member .role {
+.members-v2 .head-line .num {
+  font-family: "Shippori Mincho", serif;
+  font-size: 13px;
+  color: var(--accent-red-bright);
+}
+
+.members-v2 .head-line .name {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.members-v2 .role {
   font-size: 12px;
   color: var(--accent-blue);
-  margin-top: 4px;
+  margin-top: 5px;
 }
 
-.member .profile {
+.members-v2 .profile {
   font-size: 12.5px;
-  color: var(--sub-light);
-  line-height: 1.8;
-  margin-top: 8px;
+  color: var(--sub-warm-light);
+  line-height: 1.85;
+  margin-top: 10px;
 }
 
-/* ============================================================
-   ACCESS PAGE
-   ============================================================ */
+/* --- access / contact two-column --- */
 
-.access-grid {
+.access-v2,
+.contact-v2 {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  padding: 20px 40px 90px;
+  grid-template-columns: 1fr 1.1fr;
+  border-bottom: 1px solid var(--border-heavy);
 }
 
-.access-map {
-  height: 380px;
+.access-v2 .info,
+.contact-v2 .info {
+  padding: 48px 40px;
+  border-right: 1px solid var(--border-heavy);
 }
 
-.access-info {
-  max-width: 420px;
-}
-
-.access-info h2 {
+.access-v2 .info h2 {
   font-family: "Shippori Mincho", serif;
+  font-size: 19px;
   font-weight: 600;
-  font-size: 20px;
-  margin: 0;
+  margin: 36px 0 0;
 }
 
-.access-info .addr-block {
+.access-v2 .info .addr-block {
   font-size: 13.5px;
-  color: var(--sub);
+  color: var(--sub-warm);
   line-height: 2.1;
-  margin-top: 20px;
+  margin-top: 16px;
+  border-top: 1px solid var(--border-col);
+  padding-top: 18px;
 }
 
-.access-info .note {
-  font-size: 13px;
-  color: var(--sub-light);
-  line-height: 2;
+.access-v2 .table {
+  display: grid;
+  grid-template-columns: 90px 1fr;
   margin-top: 24px;
+  font-size: 12.5px;
 }
 
-/* ============================================================
-   CONTACT PAGE
-   ============================================================ */
-
-.contact-form {
-  padding: 20px 40px 100px;
-  max-width: 560px;
+.access-v2 .table span {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-col);
 }
+
+.access-v2 .table span.k {
+  color: var(--accent-blue);
+}
+
+.access-v2 .table span.v {
+  color: var(--sub-warm);
+}
+
+.access-v2 .map {
+  position: relative;
+  min-height: 460px;
+}
+
+.contact-v2 {
+  grid-template-columns: 1fr 1.2fr;
+}
+
+.contact-v2 .form-side {
+  padding: 48px 40px;
+}
+
+/* --- contact form fields (shared) --- */
 
 .form-stack {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 22px;
+  max-width: 520px;
 }
 
 .field label {
-  font-size: 12.5px;
+  font-size: 12px;
   color: #666;
+  letter-spacing: 0.02em;
   display: block;
 }
 
@@ -661,7 +826,7 @@ img {
   box-sizing: border-box;
   margin-top: 8px;
   padding: 12px 14px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-heavy);
   background: #fff;
   font-size: 14px;
   font-family: "Noto Sans JP", sans-serif;
@@ -673,7 +838,7 @@ img {
 
 .submit-btn {
   padding: 14px 32px;
-  background: var(--ink);
+  background: var(--accent-cta);
   color: #fff;
   font-size: 13px;
   letter-spacing: 0.06em;
@@ -689,21 +854,8 @@ img {
 
 .form-note {
   font-size: 12.5px;
-  color: var(--sub-light);
+  color: var(--sub-warm-light);
   margin-top: 4px;
-}
-
-.form-status {
-  font-size: 13px;
-  margin-top: 8px;
-}
-
-.form-status.success {
-  color: var(--accent-blue);
-}
-
-.form-status.error {
-  color: var(--accent-red);
 }
 
 /* ============================================================
@@ -711,24 +863,29 @@ img {
    ============================================================ */
 
 @media (max-width: 860px) {
-  .card-links {
+  .pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .contents-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .card-links a:nth-child(2) {
+  .contents-grid a:nth-child(2) {
     border-right: none;
   }
 
-  .member-grid {
+  .members-v2 {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .pillars {
-    grid-template-columns: 1fr;
+  .members-v2 .cell:nth-child(2n) {
+    border-right: none;
   }
 }
 
 @media (max-width: 768px) {
+  /* 旧トンマナ(劇団紹介) */
   .site-header {
     padding: 16px 20px;
   }
@@ -755,20 +912,9 @@ img {
     border-bottom: 1px solid var(--border-soft);
   }
 
-  .nav-toggle {
-    display: block;
-  }
-
   .page-title,
   .about-intro,
-  .section,
-  .archive,
-  .timeline,
-  .member-grid,
-  .access-grid,
-  .contact-form,
-  .site-footer,
-  .top-bar {
+  .timeline {
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -781,64 +927,132 @@ img {
     font-size: 28px;
   }
 
-  .hero {
-    height: 420px;
-  }
-
-  .hero-top {
-    padding: 16px 20px;
-  }
-
-  .hero-nav {
-    display: none;
-  }
-
-  .hero-copy {
-    padding: 24px 20px;
-  }
-
-  .hero-copy .catch {
-    font-size: 26px;
-  }
-
-  .card-links {
-    grid-template-columns: 1fr;
-  }
-
-  .card-links a {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-
   .pillar {
     padding: 28px 20px;
   }
 
-  .member-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+  /* 新トンマナ */
+  .masthead {
+    padding: 16px 20px 12px;
   }
 
-  .access-grid {
+  .subnav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border-heavy);
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 0;
+    display: none;
+  }
+
+  .masthead-wrap.nav-open .subnav {
+    display: flex;
+  }
+
+  .subnav a {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border-col);
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .feature-grid,
+  .feature-grid.reverse,
+  .access-v2,
+  .contact-v2 {
     grid-template-columns: 1fr;
   }
 
-  .archive-row {
+  .feature-text,
+  .access-v2 .info,
+  .contact-v2 .info {
+    border-right: none;
+    border-bottom: 1px solid var(--border-heavy);
+    padding: 32px 20px;
+  }
+
+  .feature-photo,
+  .feature-photo.tall {
+    min-height: 240px;
+  }
+
+  .contents-label,
+  .contact-v2 .form-side,
+  .page-head-v2 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .contents-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contents-grid a {
+    border-right: none;
+    border-bottom: 1px solid var(--border-col);
+    min-height: auto;
+  }
+
+  .cta-bar {
+    padding: 22px 20px;
+  }
+
+  .upcoming-row {
+    grid-template-columns: 1fr;
+  }
+
+  .upcoming-row .cell {
+    border-right: none;
+    border-bottom: 1px solid var(--border-col);
+  }
+
+  .archive-v2 {
+    padding: 0 20px 40px;
+  }
+
+  .archive-v2 .head,
+  .archive-v2 .row {
     grid-template-columns: 70px 1fr;
   }
 
-  .archive-row .venue {
+  .archive-v2 .row .venue {
     grid-column: 1 / -1;
     padding-top: 4px;
   }
 
-  .archive-row.head .venue {
+  .archive-v2 .head .venue {
     display: none;
+  }
+
+  .members-v2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .members-v2 .cell {
+    padding: 24px 20px;
+  }
+
+  .access-v2 .map {
+    min-height: 260px;
+  }
+
+  .site-footer {
+    padding: 22px 20px;
   }
 }
 
 @media (max-width: 480px) {
-  .member-grid {
+  .members-v2 {
     grid-template-columns: 1fr;
+  }
+
+  .members-v2 .cell {
+    border-right: none;
   }
 }

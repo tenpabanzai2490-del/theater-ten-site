@@ -13,10 +13,13 @@
 </head>
 <body>
 
-<header class="site-header">
-  <a href="index.html" class="logo">Theater TEN Company</a>
-  <button class="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span></button>
-  <nav class="site-nav">
+<header class="masthead-wrap" data-nav>
+  <div class="masthead">
+    <a href="index.html" class="logo">Theater TEN Company</a>
+    <button class="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span></button>
+    <div class="since">Since 2005<br>Naha, Okinawa</div>
+  </div>
+  <nav class="subnav">
     <a class="nav-link" href="performances.html">公演情報</a>
     <a class="nav-link" href="about.html">劇団紹介</a>
     <a class="nav-link" href="members.html">メンバー紹介</a>
@@ -25,43 +28,45 @@
   </nav>
 </header>
 
-<div class="page-title">
-  <div class="eyebrow" style="color:var(--accent-red)">Contact</div>
-  <h1>お問い合わせ</h1>
-</div>
-
-<div class="contact-form">
-  <!--
-    このフォームは Formspree (https://formspree.io) を利用しています。
-    無料アカウントを作成し、発行された Form ID を下の
-    "YOUR_FORM_ID" の部分に置き換えてください。
-    手順は同フォルダの README.md を参照。
-  -->
-  <form class="form-stack" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contact-form">
-    <div class="field">
-      <label for="name">お名前</label>
-      <input type="text" id="name" name="name" required>
-    </div>
-    <div class="field">
-      <label for="email">メールアドレス</label>
-      <input type="email" id="email" name="email" required>
-    </div>
-    <div class="field">
-      <label for="category">お問い合わせ種別</label>
-      <select id="category" name="category">
-        <option>公演について</option>
-        <option>取材・メディア</option>
-        <option>ワークショップについて</option>
-        <option>その他</option>
-      </select>
-    </div>
-    <div class="field">
-      <label for="message">お問い合わせ内容</label>
-      <textarea id="message" name="message" rows="6" required></textarea>
-    </div>
-    <button type="submit" class="submit-btn">送信する</button>
-    <div class="form-note">送信フォームは Formspree(外部サービス)を利用しています。設定が完了するまでは送信できません。</div>
-  </form>
+<div class="contact-v2">
+  <div class="info">
+    <div class="kicker" style="color:var(--accent-red-bright)">Contact</div>
+    <h1>お問い合わせ</h1>
+    <div class="lead bordered">公演・出演・取材・ワークショップなど、お気軽にお問い合わせください。</div>
+  </div>
+  <div class="form-side">
+    <!--
+      このフォームは Formspree (https://formspree.io) を利用しています。
+      無料アカウントを作成し、発行された Form ID を下の
+      "YOUR_FORM_ID" の部分に置き換えてください。
+      手順は同フォルダの README.md を参照。
+    -->
+    <form class="form-stack" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contact-form">
+      <div class="field">
+        <label for="name">お名前</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="field">
+        <label for="email">メールアドレス</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="field">
+        <label for="category">お問い合わせ種別</label>
+        <select id="category" name="category">
+          <option>公演について</option>
+          <option>取材・メディア</option>
+          <option>ワークショップについて</option>
+          <option>その他</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="message">お問い合わせ内容</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">送信する →</button>
+      <div class="form-note">送信フォームは Formspree(外部サービス)を利用しています。設定が完了するまでは送信できません。</div>
+    </form>
+  </div>
 </div>
 
 <footer class="site-footer">

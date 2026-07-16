@@ -13,10 +13,13 @@
 </head>
 <body>
 
-<header class="site-header">
-  <a href="index.html" class="logo">Theater TEN Company</a>
-  <button class="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span></button>
-  <nav class="site-nav">
+<header class="masthead-wrap" data-nav>
+  <div class="masthead">
+    <a href="index.html" class="logo">Theater TEN Company</a>
+    <button class="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span></button>
+    <div class="since">Since 2005<br>Naha, Okinawa</div>
+  </div>
+  <nav class="subnav">
     <a class="nav-link is-active" href="performances.html" style="color:var(--accent-red)">公演情報</a>
     <a class="nav-link" href="about.html">劇団紹介</a>
     <a class="nav-link" href="members.html">メンバー紹介</a>
@@ -25,49 +28,54 @@
   </nav>
 </header>
 
-<div class="page-title">
-  <div class="eyebrow" style="color:var(--accent-red)">Performances</div>
-  <h1>公演情報</h1>
-</div>
-
-<div class="section">
-  <h2>今後の公演</h2>
-  <div class="upcoming-list">
-    <div class="perf-card">
-      <div class="placeholder">
-        <span>STAGE PHOTO</span>
-      </div>
-      <div class="body">
-        <div class="title serif">Theater TEN Company No.38(+23)<br>『つかまえてごらんなさい、箸で』</div>
-        <div class="meta">
-          脚本:西山雅之(GORE GORE GIRLS) / 演出:嘉手納良智<br>
-          日程:2026年8月8日(土) 13:00・18:00 / 8月9日(日) 13:00・18:00<br>
-          会場:アトリエTheater TEN(沖縄県那覇市安里388-52 3F)<br>
-          料金:3,500円(当日500円増)<br>
-          出演:桃原和希・知花錦・玉那覇真樹・高嶺勇人・安里南乃・山元龍一・大嶺佳奈(劇団ビーチロック)
-        </div>
-        <a href="https://www.quartet-online.net/ticket/9soaeso" class="btn" style="margin-top:14px;display:inline-block">チケット購入はこちら</a>
-      </div>
-    </div>
+<div class="feature-grid">
+  <div class="feature-text">
+    <div class="kicker" style="color:var(--accent-red-bright)">Performances</div>
+    <h1>公演情報</h1>
+    <div class="lead">今後の公演のご案内と、これまでの上演記録です。</div>
+  </div>
+  <div class="feature-photo">
+    <img src="images/hero-group.jpg" alt="Theater TEN Company メンバー集合写真">
+    <div class="caption">最新公演より</div>
   </div>
 </div>
 
-<div class="archive">
-  <h2 class="serif">過去公演アーカイブ</h2>
-  <div class="archive-table">
-    <div class="archive-row head">
-      <span>年度</span><span>演目</span><span>会場</span>
+<div class="contents-label">Upcoming</div>
+<div class="upcoming-row">
+  <div class="cell">
+    <div class="photo placeholder"><span>STAGE PHOTO</span></div>
+    <div class="title">Theater TEN Company No.38(+23)<br>『つかまえてごらんなさい、箸で』</div>
+    <div class="meta">
+      脚本:西山雅之(GORE GORE GIRLS) / 演出:嘉手納良智<br>
+      日程:2026年8月8日(土) 13:00・18:00 / 8月9日(日) 13:00・18:00<br>
+      会場:アトリエTheater TEN(沖縄県那覇市安里388-52 3F)<br>
+      料金:3,500円(当日500円増)<br>
+      出演:桃原和希・知花錦・玉那覇真樹・高嶺勇人・安里南乃・山元龍一・大嶺佳奈(劇団ビーチロック)
     </div>
-    <div class="archive-row">
-      <span class="year">20XX</span><span>演目名(仮)</span><span class="venue">アトリエTheater TEN</span>
-    </div>
-    <div class="archive-row">
-      <span class="year">20XX</span><span>演目名(仮)</span><span class="venue">県内ホール</span>
-    </div>
-    <div class="archive-row">
-      <span class="year">20XX</span><span>演目名(仮)</span><span class="venue">アトリエTheater TEN</span>
-    </div>
+    <a href="https://www.quartet-online.net/ticket/9soaeso" class="ticket-link">チケット購入はこちら →</a>
   </div>
+  <div class="cell empty" style="grid-column: span 2">次回公演のご案内をお待ちください</div>
+</div>
+
+<div class="contents-label">Archive · 過去公演</div>
+<div class="archive-v2">
+  <div class="head">
+    <span>年度</span><span>演目</span><span>会場</span>
+  </div>
+  <div class="row">
+    <span class="year">20XX</span><span class="title">演目名(仮)</span><span class="venue">アトリエTheater TEN</span>
+  </div>
+  <div class="row">
+    <span class="year">20XX</span><span class="title">演目名(仮)</span><span class="venue">県内ホール</span>
+  </div>
+  <div class="row">
+    <span class="year">20XX</span><span class="title">演目名(仮)</span><span class="venue">アトリエTheater TEN</span>
+  </div>
+</div>
+
+<div class="cta-bar">
+  <div class="msg">出演・公演のお問い合わせはこちら</div>
+  <a class="cta" href="contact.html">お問い合わせ →</a>
 </div>
 
 <footer class="site-footer">
