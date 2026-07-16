@@ -561,6 +561,7 @@ img {
 
 .member .portrait {
   width: 100%;
+  max-width: 168px;
   aspect-ratio: 1;
   overflow: hidden;
 }
