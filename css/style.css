@@ -450,6 +450,30 @@ img {
   object-fit: cover;
 }
 
+/* ヒーロー用スライドショー(現在は1枚でも、写真を追加するだけで自動的に切り替わる) */
+
+.hero-slideshow {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.hero-slideshow .slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.hero-slideshow .slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
 .feature-photo .caption {
   position: absolute;
   left: 20px;

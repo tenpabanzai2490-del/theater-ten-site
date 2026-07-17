@@ -37,7 +37,10 @@
     <a class="cta-inline" href="performances.html" style="color:var(--accent-blue)">最新の公演情報を見る <span style="font-size:18px">→</span></a>
   </div>
   <div class="feature-photo tall">
-    <img src="images/hero-group.jpg" alt="Theater TEN Company メンバー集合写真">
+    <div class="hero-slideshow">
+      <img class="slide active" src="images/hero-group.jpg" alt="Theater TEN Company メンバー集合写真">
+      <!-- 写真を追加する場合はこの下に <img class="slide" src="..." alt="..."> を増やすだけで自動的にスライドショーになります -->
+    </div>
     <div class="caption">最新公演「つかまえてごらんなさい、箸で」より</div>
   </div>
 </div>
@@ -86,5 +89,6 @@
 </footer>
 
 <script src="js/nav.js"></script>
+<script src="js/slideshow.js"></script>
 </body>
 </html>
