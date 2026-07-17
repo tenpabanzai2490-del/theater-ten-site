@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>お問い合わせ | Theater TEN Company</title>
-<meta name="description" content="Theater TEN Companyへのお問い合わせフォーム。">
+<title>ニュース | Theater TEN Company</title>
+<meta name="description" content="Theater TEN Companyからのお知らせ。">
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
-<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -23,54 +23,41 @@
   </div>
   <nav class="subnav">
     <a class="nav-link" href="index.html">ホーム</a>
-    <a class="nav-link" href="news.html">ニュース</a>
+    <a class="nav-link is-active" href="news.html" style="color:var(--accent-blue)">ニュース</a>
     <a class="nav-link" href="performances.html">公演情報</a>
     <a class="nav-link" href="about.html">劇団紹介</a>
     <a class="nav-link" href="members.html">メンバー紹介</a>
     <a class="nav-link" href="access.html">アクセス</a>
-    <a class="nav-link is-active" href="contact.html" style="color:var(--accent-red)">お問い合わせ</a>
+    <a class="nav-link" href="contact.html">お問い合わせ</a>
   </nav>
 </header>
 
-<div class="contact-v2">
-  <div class="info">
-    <div class="kicker" style="color:var(--accent-red-bright)">Contact</div>
-    <h1>お問い合わせ</h1>
-    <div class="lead bordered">公演・出演・取材・ワークショップなど、お気軽にお問い合わせください。</div>
+<div class="page-head-v2">
+  <div class="kicker" style="color:var(--accent-blue)">News</div>
+  <h1>ニュース</h1>
+</div>
+
+<div class="news-list">
+  <div class="news-row">
+    <div class="date">2026.07.16</div>
+    <h2>ホームページをリニューアルしました(仮)</h2>
+    <p>Theater TEN Companyの新しいホームページを公開しました。今後の公演情報やメンバー紹介などを随時更新していきます。</p>
   </div>
-  <div class="form-side">
-    <!--
-      このフォームは Formspree (https://formspree.io) を利用しています。
-      無料アカウントを作成し、発行された Form ID を下の
-      "YOUR_FORM_ID" の部分に置き換えてください。
-      手順は同フォルダの README.md を参照。
-    -->
-    <form class="form-stack" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contact-form">
-      <div class="field">
-        <label for="name">お名前</label>
-        <input type="text" id="name" name="name" required>
-      </div>
-      <div class="field">
-        <label for="email">メールアドレス</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <div class="field">
-        <label for="category">お問い合わせ種別</label>
-        <select id="category" name="category">
-          <option>公演について</option>
-          <option>取材・メディア</option>
-          <option>ワークショップについて</option>
-          <option>その他</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="message">お問い合わせ内容</label>
-        <textarea id="message" name="message" rows="6" required></textarea>
-      </div>
-      <button type="submit" class="submit-btn">送信する →</button>
-      <div class="form-note">送信フォームは Formspree(外部サービス)を利用しています。設定が完了するまでは送信できません。</div>
-    </form>
+  <div class="news-row">
+    <div class="date">2026.07.XX</div>
+    <h2>『つかまえてごらんなさい、箸で』チケット発売中(仮)</h2>
+    <p>8月8日(土)・9日(日)公演のチケットを発売しています。詳細は公演情報ページをご覧ください。</p>
   </div>
+  <div class="news-row">
+    <div class="date">2026.XX.XX</div>
+    <h2>お知らせタイトル(仮)</h2>
+    <p>お知らせ本文がここに入ります。</p>
+  </div>
+</div>
+
+<div class="cta-bar">
+  <div class="msg">お知らせに関するお問い合わせはこちら</div>
+  <a class="cta" href="contact.html">お問い合わせ →</a>
 </div>
 
 <footer class="site-footer">
