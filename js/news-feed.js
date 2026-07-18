@@ -54,11 +54,37 @@ document.addEventListener("DOMContentLoaded", function () {
 function renderRow(r) {
   var title = escapeHTML(r[3] || "");
   var date = escapeHTML(r[4] || "");
-  var body = escapeHTML(r[5] || "").replace(/\n/g, "<br>");
+  var rawBody = r[5] || "";
+
+  // 本文の中から "[添付画像] URL" という行を抜き出し、実際の画像として表示する
+  var imageUrls = [];
+  var textLines = rawBody.split("\n").filter(function (line) {
+    var m = line.match(/^\[添付画像\]\s*(\S+)/);
+    if (m) {
+      imageUrls.push(m[1]);
+      return false;
+    }
+    return true;
+  });
+
+  var body = escapeHTML(textLines.join("\n").trim()).replace(/\n/g, "<br>");
+
+  var imagesHTML = imageUrls.length
+    ? '<div class="news-images">' +
+      imageUrls
+        .map(function (url) {
+          var safeUrl = escapeHTML(url);
+          return '<a href="' + safeUrl + '" target="_blank" rel="noopener"><img src="' + safeUrl + '" alt="' + title + '" loading="lazy"></a>';
+        })
+        .join("") +
+      "</div>"
+    : "";
+
   return (
     '<div class="news-row">' +
     '<div class="date">' + date + "</div>" +
     "<h2>" + title + "</h2>" +
+    imagesHTML +
     "<p>" + body + "</p>" +
     "</div>"
   );

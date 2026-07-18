@@ -600,6 +600,20 @@ img {
   margin-top: 8px;
 }
 
+.news-images {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.news-images img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border: 1px solid var(--border-col);
+}
+
 /* --- CTA bar --- */
 
 .cta-bar {

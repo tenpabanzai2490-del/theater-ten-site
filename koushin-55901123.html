@@ -59,8 +59,8 @@
         <textarea id="body" name="entry.1105532969" rows="6" required></textarea>
       </div>
       <div class="field">
-        <label for="image-file">チラシ画像やプロフ画像など(任意)</label>
-        <input type="file" id="image-file" accept="image/*">
+        <label for="image-file">チラシ画像やプロフ画像など(任意・複数選択可)</label>
+        <input type="file" id="image-file" accept="image/*" multiple>
         <div class="form-note" id="upload-status"></div>
       </div>
       <button type="submit" class="submit-btn">送信する →</button>
@@ -90,29 +90,49 @@
     var submitBtn = document.querySelector('#post-form button[type="submit"]');
     var dateInput = document.getElementById("date");
 
-    fileInput.addEventListener("change", function () {
-      var file = fileInput.files[0];
-      if (!file) return;
-
-      uploadStatus.textContent = "アップロード中...";
-      uploadStatus.style.color = "var(--sub-warm-light)";
-      submitBtn.disabled = true;
-
+    function uploadOne(file) {
       var formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", UPLOAD_PRESET);
 
-      fetch("https://api.cloudinary.com/v1_1/" + CLOUD_NAME + "/image/upload", {
+      return fetch("https://api.cloudinary.com/v1_1/" + CLOUD_NAME + "/image/upload", {
         method: "POST",
         body: formData
       })
         .then(function (res) { return res.json(); })
         .then(function (data) {
           if (!data.secure_url) throw new Error("upload failed");
-          // Googleフォーム側に画像専用の項目がないため、本文の末尾にURLを追記する
-          var sep = bodyField.value.trim() ? "\n\n" : "";
-          bodyField.value += sep + "[添付画像] " + data.secure_url;
-          uploadStatus.textContent = "画像をアップロードしました(本文末尾に追記されました)。";
+          return data.secure_url;
+        });
+    }
+
+    fileInput.addEventListener("change", function () {
+      var files = Array.prototype.slice.call(fileInput.files);
+      if (files.length === 0) return;
+
+      uploadStatus.textContent = "アップロード中(0/" + files.length + ")...";
+      uploadStatus.style.color = "var(--sub-warm-light)";
+      submitBtn.disabled = true;
+
+      var done = 0;
+      var chain = Promise.resolve();
+
+      files.forEach(function (file) {
+        chain = chain
+          .then(function () { return uploadOne(file); })
+          .then(function (url) {
+            done++;
+            // Googleフォーム側には画像専用の項目がないため、本文の末尾に1行ずつ追記する。
+            // サイト表示側(news-feed.js)がこの行を検出して、実際の画像として表示する。
+            var sep = bodyField.value.trim() ? "\n\n" : "";
+            bodyField.value += sep + "[添付画像] " + url;
+            uploadStatus.textContent = "アップロード中(" + done + "/" + files.length + ")...";
+          });
+      });
+
+      chain
+        .then(function () {
+          uploadStatus.textContent = files.length + "枚の画像をアップロードしました。";
           uploadStatus.style.color = "var(--accent-blue)";
         })
         .catch(function () {
