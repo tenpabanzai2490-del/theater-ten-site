@@ -40,23 +40,23 @@
   </div>
   <div class="form-side">
     <!--
-      このフォームは Formspree (https://formspree.io) を利用しています。
-      無料アカウントを作成し、発行された Form ID を下の
-      "YOUR_FORM_ID" の部分に置き換えてください。
-      手順は同フォルダの README.md を参照。
+      このフォームは Googleフォーム(お問い合わせ・サイト訪問者向け)の
+      回答受付URLに直接送信しています。Googleフォーム側の設定で
+      「新しい回答についてのメール通知を受け取る」をオンにしておくと、
+      送信のたびに通知メールが届きます。
     -->
-    <form class="form-stack" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contact-form">
+    <form class="form-stack" action="https://docs.google.com/forms/d/e/1FAIpQLSdOg6zbTtdCX56vm1HeFXkpBuPY4-su8JR_quhNTBOd8JWI3Q/formResponse" method="POST" target="hidden-iframe" id="contact-form">
       <div class="field">
         <label for="name">お名前</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="entry.618737199" required>
       </div>
       <div class="field">
         <label for="email">メールアドレス</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="entry.364837156" required>
       </div>
       <div class="field">
         <label for="category">お問い合わせ種別</label>
-        <select id="category" name="category">
+        <select id="category" name="entry.647223899">
           <option>公演について</option>
           <option>取材・メディア</option>
           <option>ワークショップについて</option>
@@ -65,11 +65,12 @@
       </div>
       <div class="field">
         <label for="message">お問い合わせ内容</label>
-        <textarea id="message" name="message" rows="6" required></textarea>
+        <textarea id="message" name="entry.1855476971" rows="6" required></textarea>
       </div>
       <button type="submit" class="submit-btn">送信する →</button>
-      <div class="form-note">送信フォームは Formspree(外部サービス)を利用しています。設定が完了するまでは送信できません。</div>
+      <div class="form-note" id="contact-status"></div>
     </form>
+    <iframe name="hidden-iframe" style="display:none"></iframe>
   </div>
 </div>
 
@@ -88,5 +89,12 @@
 </footer>
 
 <script src="js/nav.js"></script>
+<script>
+  document.getElementById("contact-form").addEventListener("submit", function () {
+    var status = document.getElementById("contact-status");
+    status.textContent = "送信しました。ありがとうございます。";
+    status.style.color = "var(--accent-blue)";
+  });
+</script>
 </body>
 </html>
