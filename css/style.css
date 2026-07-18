@@ -728,6 +728,7 @@ img {
 
 .upcoming-row .cell .cell-info {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 8px;
   min-width: 0;
