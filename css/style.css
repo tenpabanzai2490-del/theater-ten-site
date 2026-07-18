@@ -889,6 +889,11 @@ img {
   border-right: 1px solid var(--border-heavy);
 }
 
+.access-v2 .info h1,
+.contact-v2 .info h1 {
+  font-family: "Shippori Mincho", serif;
+}
+
 .access-v2 .info h2 {
   font-family: "Shippori Mincho", serif;
   font-size: 19px;
