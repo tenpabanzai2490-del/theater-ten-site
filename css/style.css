@@ -1125,25 +1125,12 @@ img {
     padding: 32px 20px;
   }
 
-  .feature-photo,
-  .feature-photo.tall {
+  .feature-photo {
     min-height: 0;
   }
 
-  .hero-slideshow {
-    position: static;
-  }
-
-  .hero-slideshow .slide {
-    position: static;
-    display: none;
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
-  }
-
-  .hero-slideshow .slide.active {
-    display: block;
+  .feature-photo.tall {
+    min-height: 240px;
   }
 
   .feature-photo img {
@@ -1152,6 +1139,9 @@ img {
     height: 240px;
     object-fit: cover;
   }
+
+  /* hero-slideshow (トップページ)は、絶対配置+opacityのクロスフェードをブラウザ版と共通のまま使う。
+     .feature-photo img の static 上書きは、この中の img には及ばない(hero-slideshow .slide の方が詳細度で勝つため)。 */
 
   .feature-photo .caption {
     position: static;
