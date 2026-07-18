@@ -1122,7 +1122,33 @@ img {
 
   .feature-photo,
   .feature-photo.tall {
-    min-height: 240px;
+    min-height: 0;
+  }
+
+  .hero-slideshow {
+    position: static;
+  }
+
+  .hero-slideshow .slide {
+    position: static;
+    display: none;
+  }
+
+  .hero-slideshow .slide.active {
+    display: block;
+  }
+
+  .feature-photo img {
+    position: static;
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+  }
+
+  .feature-photo .caption {
+    position: static;
+    display: inline-block;
+    margin: 10px 20px 0;
   }
 
   .contents-label,
