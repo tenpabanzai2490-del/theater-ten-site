@@ -67,7 +67,11 @@ function renderRow(r) {
     return true;
   });
 
-  var body = escapeHTML(textLines.join("\n").trim()).replace(/\n/g, "<br>");
+  var body = escapeHTML(textLines.join("\n").trim());
+  body = body.replace(/(https?:\/\/[^\s<]+)/g, function (url) {
+    return '<a href="' + url + '" target="_blank" rel="noopener" style="text-decoration:underline">' + url + "</a>";
+  });
+  body = body.replace(/\n/g, "<br>");
 
   var imagesHTML = imageUrls.length
     ? '<div class="news-images">' +

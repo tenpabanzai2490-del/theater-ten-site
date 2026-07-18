@@ -608,10 +608,14 @@ img {
 }
 
 .news-images img {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
+  display: block;
+  max-width: 220px;
+  max-height: 280px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
   border: 1px solid var(--border-col);
+  background: var(--placeholder-a);
 }
 
 /* --- CTA bar --- */
