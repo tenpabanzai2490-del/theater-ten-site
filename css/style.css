@@ -697,8 +697,7 @@ img {
   border-top: 1px solid var(--border-heavy);
   border-bottom: 1px solid var(--border-heavy);
   display: grid;
-  grid-template-columns: repeat(auto-fill, 202px);
-  justify-content: start;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .upcoming-row .cell {
