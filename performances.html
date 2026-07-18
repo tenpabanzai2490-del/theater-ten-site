@@ -46,10 +46,11 @@
 
 <div class="contents-label">Upcoming</div>
 
-<!-- 直接編集エリア: 代表からの依頼でこの中身を直接書き換える。投稿窓口(下のエリア)からは触られない。 -->
-<div class="upcoming-row">
-  <div class="cell empty" style="grid-column: span 3">メインの公演情報はここに直接掲載できます(代表からの依頼で更新)</div>
-</div>
+<!-- 直接編集エリア: 代表からの依頼でこの中身を直接書き換える。投稿窓口(下のエリア)からは触られない。
+     中身が無い間は display:none で高さゼロにし、下の投稿窓口エリアだけが単独の1行に見えるようにしている。
+     ここに内容を追加する時は、この行の display:none を外し、下の投稿窓口エリアの border-top:none も
+     合わせて外すと、境界線が二重にならず継ぎ目なく1つの列に見える。 -->
+<div class="upcoming-row" style="display:none"></div>
 
 <!-- 投稿窓口エリア: ここだけ news-feed.js が自動的に書き換える(公開OKが付いた投稿のみ)。 -->
 <div class="upcoming-row" data-feed-categories="公演情報,公演情報の追加・修正依頼" data-feed-style="card">
