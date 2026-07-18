@@ -719,8 +719,10 @@ img {
 
 .upcoming-row .cell .photo {
   width: 100%;
+  max-width: 150px;
   aspect-ratio: 3 / 4;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 .upcoming-row .cell .title {
