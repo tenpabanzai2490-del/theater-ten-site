@@ -59,6 +59,12 @@
         <label for="body">本文</label>
         <textarea id="body" name="entry.000000005" rows="6" required></textarea>
       </div>
+      <div class="field">
+        <label for="image-file">チラシ画像やプロフ画像など(任意)</label>
+        <input type="file" id="image-file" accept="image/*">
+        <div class="form-note" id="upload-status"></div>
+        <input type="hidden" id="image-url" name="entry.000000006">
+      </div>
       <button type="submit" class="submit-btn">送信する →</button>
       <div class="form-note" id="post-status"></div>
     </form>
@@ -75,6 +81,49 @@
 </footer>
 
 <script>
+  // Cloudinary(画像アップロード先)の設定。ログイン不要のUnsignedプリセットを使用。
+  var CLOUD_NAME = "b0da7npk";
+  var UPLOAD_PRESET = "ttc-uploads";
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var fileInput = document.getElementById("image-file");
+    var hiddenUrl = document.getElementById("image-url");
+    var uploadStatus = document.getElementById("upload-status");
+    var submitBtn = document.querySelector('#post-form button[type="submit"]');
+
+    fileInput.addEventListener("change", function () {
+      var file = fileInput.files[0];
+      if (!file) return;
+
+      uploadStatus.textContent = "アップロード中...";
+      uploadStatus.style.color = "var(--sub-warm-light)";
+      submitBtn.disabled = true;
+
+      var formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", UPLOAD_PRESET);
+
+      fetch("https://api.cloudinary.com/v1_1/" + CLOUD_NAME + "/image/upload", {
+        method: "POST",
+        body: formData
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (!data.secure_url) throw new Error("upload failed");
+          hiddenUrl.value = data.secure_url;
+          uploadStatus.textContent = "画像をアップロードしました。";
+          uploadStatus.style.color = "var(--accent-blue)";
+        })
+        .catch(function () {
+          uploadStatus.textContent = "画像のアップロードに失敗しました。もう一度お試しください。";
+          uploadStatus.style.color = "var(--accent-red)";
+        })
+        .finally(function () {
+          submitBtn.disabled = false;
+        });
+    });
+  });
+
   document.getElementById("post-form").addEventListener("submit", function () {
     var status = document.getElementById("post-status");
     status.textContent = "送信しました。確認後、サイトに反映されます。";
