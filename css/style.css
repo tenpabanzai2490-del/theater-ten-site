@@ -601,29 +601,28 @@ img {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: 40px;
-  align-items: center;
+  align-items: start;
   padding: 48px 40px;
   border-bottom: 1px solid var(--border-heavy);
 }
 
-.follow-section .lead {
-  font-size: 15px;
-  line-height: 1.9;
-  color: var(--sub-warm);
-  max-width: 420px;
-}
-
-.follow-section .sns-links {
-  margin-top: 22px;
+.follow-news.news-list {
+  padding: 0;
 }
 
 .follow-embed {
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
 .follow-embed iframe {
   max-width: 100%;
+}
+
+.follow-embed .sns-links {
+  margin-top: 0;
 }
 
 @media (max-width: 768px) {
