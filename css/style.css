@@ -660,6 +660,59 @@ img {
   }
 }
 
+/* --- CTA buttons(主要CTA=btn-primary、サブ導線=btn-secondary) --- */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 30px 13px 26px;
+  background: oklch(58% 0.12 35);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  border-radius: 100px;
+  box-shadow: 2px 3px 0 #1a1a1a;
+  transition: transform 0.15s, box-shadow 0.15s;
+  font-family: "Noto Sans JP", sans-serif;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  transform: translate(2px, 3px);
+  box-shadow: 0 0 0 #1a1a1a;
+}
+
+.btn-secondary {
+  position: relative;
+  display: inline-block;
+  padding: 13px 30px;
+  background: #efece5;
+  border: 1.5px solid #1a1a1a;
+  border-radius: 100px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: #1a1a1a;
+  font-family: "Noto Sans JP", sans-serif;
+  text-decoration: none;
+}
+
+.btn-secondary .badge {
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  width: 22px;
+  height: 22px;
+  background: oklch(58% 0.12 35);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(12deg);
+}
+
 /* --- CTA bar --- */
 
 .cta-bar {

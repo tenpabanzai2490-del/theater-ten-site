@@ -40,6 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
   leadEl.textContent = data.leadText || "";
 
   linksEl.innerHTML =
-    '<a class="cta-inline" href="ticket.html" style="color:var(--accent-red-bright)">チケットを予約する <span style="font-size:18px">→</span></a>' +
-    '<a class="cta-inline" href="' + escapeHTML(data.detailPageUrl) + '" style="color:var(--accent-blue)">公演詳細を見る <span style="font-size:18px">→</span></a>';
+    '<a class="btn-primary" href="ticket.html">チケットを予約する <span>→</span></a>' +
+    '<a class="btn-secondary" href="' + escapeHTML(data.detailPageUrl) + '">公演詳細を見る<span class="badge">◯</span></a>';
 });

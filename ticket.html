@@ -49,13 +49,14 @@
       <iframe id="ticket-iframe" title="チケット予約フォーム" style="width:100%;height:900px;border:0;display:block"></iframe>
     </div>
 
-    <div class="form-note" style="margin-top:16px">
-      うまく表示されない場合は、<a id="ticket-fallback-link" href="#" target="_blank" rel="noopener" style="color:var(--accent-blue);text-decoration:underline">こちらから直接お申し込みください</a>。
+    <div class="form-note" style="margin-top:20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <span>うまく表示されない場合はこちら</span>
+      <a id="ticket-fallback-link" class="btn-primary" href="#" target="_blank" rel="noopener">直接お申し込みください <span>→</span></a>
     </div>
 
     <div id="ticket-iframe-error" style="display:none;padding:32px;border:1px solid var(--border-col);text-align:center">
-      <p>予約フォームの読み込みに時間がかかっています。</p>
-      <a id="ticket-iframe-error-link" href="#" target="_blank" rel="noopener" style="color:var(--accent-blue);text-decoration:underline">こちらから直接お申し込みください →</a>
+      <p style="margin-bottom:20px">予約フォームの読み込みに時間がかかっています。</p>
+      <a id="ticket-iframe-error-link" class="btn-primary" href="#" target="_blank" rel="noopener">直接お申し込みください <span>→</span></a>
     </div>
   </div>
 
