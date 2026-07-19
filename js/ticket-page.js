@@ -1,5 +1,7 @@
 // チケットページ(ticket.html)。FEATURED_PRODUCTION(js/featured-production.js)の
-// status に応じて「予約受付中」「次回公演未定」の2状態を切り替える。
+// ticketPageStatus に応じて「hidden(何も表示しない)」「waiting(次回公演をお待ちください)」
+// 「open(予約受付中)」の3状態を切り替える。ホームの特集セクション用の status とは別の値なので、
+// ホームの表示に影響を与えずにチケットページだけの状態を切り替えられる。
 //
 // iframeは日程・料金を確認する閲覧用プレビューとして表示する。予約フォームはセッション
 // Cookieに依存する多段階フォームのため、別ドメインのiframe内だとブラウザのサードパーティ
@@ -15,10 +17,12 @@ document.addEventListener("DOMContentLoaded", function () {
   var openEl = document.getElementById("ticket-open");
   var noneEl = document.getElementById("ticket-none");
 
-  // 予約導線を再検討中は、どちらも表示せず空のページのままにする。
-  if (!data || !data.ticketPageReady) return;
+  var ticketPageStatus = data && data.ticketPageStatus;
 
-  if (data.status !== "open") {
+  // hidden、または未設定の間は何も表示しない(準備中)。
+  if (!ticketPageStatus || ticketPageStatus === "hidden") return;
+
+  if (ticketPageStatus !== "open") {
     noneEl.style.display = "";
     return;
   }
