@@ -526,7 +526,7 @@ img {
 
 .contents-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   border-top: 1px solid var(--border-heavy);
   border-bottom: 1px solid var(--border-heavy);
 }
@@ -1019,7 +1019,7 @@ img {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .contents-grid a:nth-child(2) {
+  .contents-grid a:nth-child(2n) {
     border-right: none;
   }
 
