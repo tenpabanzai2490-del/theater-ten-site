@@ -13,6 +13,5 @@ var FEATURED_PRODUCTION = {
   venue: "アトリエTheater TEN(沖縄県那覇市安里388-52 3F)",
   leadText: "結婚も恋愛もどこか遠いものとして笑い飛ばし、“家族以上”の絆を信じて生きてきた男たち。仲間の誕生日を祝う一日、その日常に小さな亀裂が走る——独身男たちの群像コメディ。",
   flyerImage: "https://res.cloudinary.com/b0da7npk/image/upload/v1784349141/y8by7x10cqbrufpzghfx.jpg",
-  detailPageUrl: "performance.html?id=" + encodeURIComponent("2026/07/18 13:32:46"),
-  ticketUrl: "https://shibai-engine.net/prism/webform.php?d=tqgy3i6v"
+  detailPageUrl: "performance.html?id=" + encodeURIComponent("2026/07/18 13:32:46")
 };

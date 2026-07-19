@@ -53,18 +53,39 @@
       <div id="ticket-meta" style="font-size:13px;line-height:1.9;color:var(--sub-warm-light)"></div>
     </div>
 
-    <!-- iframeは日程・料金などを確認する「閲覧用プレビュー」として表示する。
-         予約フォームはセッションCookieを使う仕組みのため、別ドメインのiframe内では
-         ブラウザのサードパーティCookie制限により予約が正しく完了しないことを確認済み。
-         そのため実際の予約確定は、必ず新しいタブで開く本家ページ側で行ってもらう。 -->
-    <div style="border:1px solid var(--border-col);background:#fff">
-      <iframe id="ticket-iframe" title="チケット予約フォーム(日程・料金の確認用)" style="width:100%;height:1450px;border:0;display:block"></iframe>
-    </div>
-
-    <div style="margin-top:24px;padding:32px;border:1px solid var(--border-col);background:#fff;text-align:center">
-      <p style="font-size:13px;color:var(--sub-warm-light);line-height:1.9;margin-bottom:20px">上のフォームは日程・料金のご確認用です(このままではご予約は完了しません)。<br>ご予約を確定される方は、下のボタンから新しいタブで開く本家ページで、あらためてご入力ください。</p>
-      <a id="ticket-link" class="btn-primary" href="#" target="_blank" rel="noopener">予約を確定する方はこちら <span>→</span></a>
-    </div>
+    <!-- 予約は自サイトの /api/ticket-reserve を経由してGoogleフォームへ転送される
+         (送信先URLをクライアントに露出させないため。投稿窓口・お問い合わせと同じ方式)。
+         決済は含まず「座席の確保のみ・当日精算」のため、外部予約システムのiframe埋め込みで
+         問題になったサードパーティCookieの制限は発生しない。 -->
+    <form class="form-stack" id="ticket-form">
+      <div class="field">
+        <label for="t-name">お名前</label>
+        <input type="text" id="t-name" required>
+      </div>
+      <div class="field">
+        <label for="t-email">メールアドレス</label>
+        <input type="email" id="t-email" required>
+      </div>
+      <div class="field">
+        <label for="t-slot">ご希望の日時</label>
+        <select id="t-slot" required>
+          <option value="">読み込み中...</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="t-count">人数</label>
+        <input type="number" id="t-count" min="1" max="10" value="1" required>
+      </div>
+      <div class="field">
+        <label for="t-note">備考(任意)</label>
+        <textarea id="t-note" rows="3"></textarea>
+      </div>
+      <!-- ハニーポット: 人間には見えない項目 -->
+      <input type="text" id="t-hp" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+      <button type="submit" class="submit-btn">予約する →</button>
+      <div class="form-note" id="ticket-status"></div>
+      <p style="font-size:12px;color:var(--sub-warm-light);margin-top:8px">※ ご予約は座席の確保のみです。お支払いは当日、劇場にて精算となります。</p>
+    </form>
 
     <div class="form-note" style="margin-top:20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
       <span>うまくいかない場合はこちら</span>
