@@ -45,13 +45,17 @@
       <div id="ticket-meta" style="font-size:13px;line-height:1.9;color:var(--sub-warm-light)"></div>
     </div>
 
-    <!-- 予約フォーム自体はiframe埋め込みにしない: セッションCookieを使う仕組みのため、
-         別ドメインのiframe内だとブラウザのサードパーティCookie制限で予約が正しく完了しない
-         (実際に発生を確認済み)。安全のため、必ずカルテットオンライン本家のページを
-         新しいタブで開いてもらう形にしている。 -->
-    <div style="padding:40px;border:1px solid var(--border-col);background:#fff;text-align:center">
-      <p style="font-size:13px;color:var(--sub-warm-light);line-height:1.9;margin-bottom:24px">予約フォームは外部サイト(カルテットオンライン)で開きます。</p>
-      <a id="ticket-link" class="btn-primary" href="#" target="_blank" rel="noopener">予約はこちらから <span>→</span></a>
+    <!-- iframeは日程・料金などを確認する「閲覧用プレビュー」として表示する。
+         予約フォームはセッションCookieを使う仕組みのため、別ドメインのiframe内では
+         ブラウザのサードパーティCookie制限により予約が正しく完了しないことを確認済み。
+         そのため実際の予約確定は、必ず新しいタブで開く本家ページ側で行ってもらう。 -->
+    <div style="border:1px solid var(--border-col);background:#fff">
+      <iframe id="ticket-iframe" title="チケット予約フォーム(日程・料金の確認用)" style="width:100%;height:1450px;border:0;display:block"></iframe>
+    </div>
+
+    <div style="margin-top:24px;padding:32px;border:1px solid var(--border-col);background:#fff;text-align:center">
+      <p style="font-size:13px;color:var(--sub-warm-light);line-height:1.9;margin-bottom:20px">上のフォームは日程・料金のご確認用です(このままではご予約は完了しません)。<br>ご予約を確定される方は、下のボタンから新しいタブで開く本家ページで、あらためてご入力ください。</p>
+      <a id="ticket-link" class="btn-primary" href="#" target="_blank" rel="noopener">予約を確定する方はこちら <span>→</span></a>
     </div>
 
     <div class="form-note" style="margin-top:20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">

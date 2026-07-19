@@ -1,9 +1,10 @@
 // チケットページ(ticket.html)。FEATURED_PRODUCTION(js/featured-production.js)の
 // status に応じて「予約受付中」「次回公演未定」の2状態を切り替える。
 //
-// 予約フォームはiframe埋め込みにせず、新しいタブでカルテットオンライン本家のページを開かせる。
-// セッションCookieに依存する多段階フォームのため、別ドメインのiframe内だと
-// サードパーティCookie制限で予約が完了しないことを実際に確認したため。
+// iframeは日程・料金を確認する閲覧用プレビューとして表示する。予約フォームはセッション
+// Cookieに依存する多段階フォームのため、別ドメインのiframe内だとブラウザのサードパーティ
+// Cookie制限で予約が正しく完了しないことを実際に確認済み。そのため予約の確定操作自体は
+// 必ず新しいタブで開く本家ページ側で行ってもらう(iframe内では完結させない)。
 //
 // チケットURLは、投稿窓口から「チケットURL更新」種別で投稿・公開OKされたものがあれば
 // そちらを優先して使う(コードを直さずスプレッドシートの承認だけで更新できるようにするため)。
@@ -30,10 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
     .map(function (t) { return escapeHTML(t); })
     .join("<br>");
 
+  var iframe = document.getElementById("ticket-iframe");
   var ticketLink = document.getElementById("ticket-link");
+  iframe.src = data.ticketUrl;
   ticketLink.href = data.ticketUrl;
 
   resolveTicketUrl(data.ticketUrl, function (ticketUrl) {
+    iframe.src = ticketUrl;
     ticketLink.href = ticketUrl;
   });
 });
