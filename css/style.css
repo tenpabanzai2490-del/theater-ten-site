@@ -610,6 +610,61 @@ img {
   padding: 0;
 }
 
+.follow-news-head {
+  font-family: "Shippori Mincho", serif;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--sub-warm-light);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.news-list-item {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-col);
+  text-decoration: none;
+  color: inherit;
+}
+
+.news-list-item:first-child {
+  padding-top: 0;
+}
+
+.news-list-item .date {
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--accent-blue);
+  font-variant-numeric: tabular-nums;
+}
+
+.news-list-item .title {
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.news-list-item:hover .title {
+  text-decoration: underline;
+}
+
+.follow-news-more {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--accent-red-bright);
+  text-decoration: none;
+}
+
+.follow-news-more:hover {
+  text-decoration: underline;
+}
+
 .follow-embed {
   display: flex;
   flex-direction: column;
