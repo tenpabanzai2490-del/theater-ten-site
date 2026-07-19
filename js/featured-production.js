@@ -1,10 +1,12 @@
 // トップページの特集セクションと、チケットページ(ticket.html)の両方が参照する
 // 「今、押し出したい公演」の情報。ここを1箇所書き換えるだけで両方に反映される。
 //
-// status: "open"(予約受付中。チケットページに予約フォームを表示) | "none"(次回公演未定)
-// 公演が終わったら status を "none" に変えるだけでよい(タイトル等は残しておいて構わない)。
+// status: "open"(予約受付中) | "none"(次回公演未定)。ホームの特集セクションに反映される。
+// ticketPageReady: チケットページ(ticket.html)の予約導線をまだ表示するかどうか。
+//   予約方法を再検討中の間は false にしておくと、ticket.html は何も表示しない(ホームの特集セクションには影響しない)。
 var FEATURED_PRODUCTION = {
   status: "open",
+  ticketPageReady: false,
   title: "つかまえてごらんなさい、箸で",
   subtitle: "Theater TEN Company No.38(+23)",
   dates: "2026年8月8日(土) 13:00・18:00 / 8月9日(日) 13:00・18:00",

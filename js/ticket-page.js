@@ -15,7 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
   var openEl = document.getElementById("ticket-open");
   var noneEl = document.getElementById("ticket-none");
 
-  if (!data || data.status !== "open") {
+  // 予約導線を再検討中は、どちらも表示せず空のページのままにする。
+  if (!data || !data.ticketPageReady) return;
+
+  if (data.status !== "open") {
     noneEl.style.display = "";
     return;
   }

@@ -21,10 +21,12 @@ document.addEventListener("DOMContentLoaded", function () {
     leadEl.className = "lead bordered";
     leadEl.textContent = "うちなー芝居、現代劇、市民ミュージカル、そして次世代の育成。沖縄・那覇を拠点に20年以上、伝統と現代のあいだで舞台をつくり続けています。";
     linksEl.innerHTML = '<a class="cta-inline" href="performances.html" style="color:var(--accent-blue)">最新の公演情報を見る <span style="font-size:18px">→</span></a>';
+    if (window.autofitHeading) autofitHeading(titleEl);
     return;
   }
 
   titleEl.textContent = data.title;
+  if (window.autofitHeading) autofitHeading(titleEl);
 
   var metaParts = [];
   if (data.subtitle) metaParts.push(data.subtitle);

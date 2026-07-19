@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function showError(message) {
     if (titleEl) titleEl.textContent = "公演が見つかりません";
+    if (window.autofitHeading) autofitHeading(titleEl);
     container.innerHTML = "<p>" + escapeHTML(message) + "</p>";
   }
 
@@ -47,6 +48,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.title = (r[3] || "公演詳細") + " | Theater TEN Company";
     if (titleEl) titleEl.textContent = r[3] || "";
+    // タイトルは非同期で後から差し替わるため、DOMContentLoaded時の自動判定だけでは
+    // 間に合わない。ここで明示的にフォントサイズの再計算を呼ぶ。
+    if (window.autofitHeading) autofitHeading(titleEl);
 
     var imagesHtml = processed.imageUrls.length
       ? '<div class="detail-flyers">' +
