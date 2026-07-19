@@ -13,10 +13,17 @@ function autofitHeading(el) {
     el.setAttribute("data-base-font", baseSize);
   }
 
+  // flexboxの子要素(例: .feature-text直下のh1)は、white-space:nowrapにした瞬間、
+  // 要素自身の幅(clientWidth)も中身に合わせて広がってしまい、正しく比較できない。
+  // そのため、折り返し可能な通常状態でのクライアント幅を先に測っておき、それを基準にする。
+  el.style.fontSize = baseSize + "px";
+  el.style.whiteSpace = "normal";
+  var targetWidth = el.clientWidth;
+
   el.style.whiteSpace = "nowrap";
   var size = baseSize;
   el.style.fontSize = size + "px";
-  while (el.scrollWidth > el.clientWidth && size > minSize) {
+  while (el.scrollWidth > targetWidth && size > minSize) {
     size -= 1;
     el.style.fontSize = size + "px";
   }
