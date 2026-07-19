@@ -26,3 +26,18 @@ lolipop-migration/
 
 - `config.php` は **絶対にGitHubにコミットしない**でください(`.gitignore` に追加済みです)
 - アップロード後、必ず先に動作確認してから、独自ドメインの向き先(DNS)をロリポップに切り替えてください。それまでは今のVercel版がそのまま動き続けるので、切り替えを急ぐ必要はありません
+
+## 更新の自動化(GitHub Actions)
+
+`.github/workflows/deploy-lolipop.yml` に、「GitHubにpushしたら自動でロリポップにFTPアップロードされる」仕組みを用意してあります(今のVercelと同じ体験)。
+
+**今はまだ手動実行(workflow_dispatch)のみ**にしてあります。ロリポップのFTP接続情報が決まったら:
+
+1. GitHubリポジトリの `Settings` → `Secrets and variables` → `Actions` で、以下の4つを登録する
+   - `LOLIPOP_FTP_HOST`(FTPサーバー名)
+   - `LOLIPOP_FTP_USER`(FTPユーザー名)
+   - `LOLIPOP_FTP_PASSWORD`(FTPパスワード)
+   - `LOLIPOP_FTP_DIR`(公開フォルダのパス。例: `/theater-ten-site/`)
+2. `deploy-lolipop.yml` の `on:` にある push トリガーのコメントアウトを外す(私の方で対応します)
+
+これで、今後は「私に変更を依頼する → GitHubにpush → ロリポップに自動反映」という、今と同じ流れを維持できます。`config.php` は自動アップロードの対象から除外する設定になっているので、上書き・削除される心配はありません。

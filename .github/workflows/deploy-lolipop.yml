@@ -1,0 +1,57 @@
+# ロリポップへ自動デプロイするワークフロー。
+#
+# 今はまだロリポップのFTP接続情報が無いため、trigger は手動実行(workflow_dispatch)のみにしてある。
+# アカウントを取得し、GitHubリポジトリの Settings > Secrets and variables > Actions で
+# 以下の4つを登録したら、下の `on:` に push トリガーを追加して自動化を有効にする。
+#
+#   LOLIPOP_FTP_HOST      ロリポップのFTPサーバー名
+#   LOLIPOP_FTP_USER      FTPユーザー名
+#   LOLIPOP_FTP_PASSWORD  FTPパスワード
+#   LOLIPOP_FTP_DIR        公開フォルダのパス(例: /theater-ten-site/)
+#
+# 有効化する時は、以下のコメントアウトされている push トリガーを外すだけでよい。
+
+name: Deploy to Lolipop
+
+on:
+  workflow_dispatch: {}
+  # push:
+  #   branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Assemble deploy folder
+        run: |
+          mkdir -p deploy
+          # サイト本体一式をコピー(Vercel用のapi/、lolipop-migration/、Git関連は除く)
+          rsync -av \
+            --exclude 'api' \
+            --exclude 'lolipop-migration' \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude 'deploy' \
+            --exclude '_serve.ps1' \
+            ./ deploy/
+          # ロリポップ用PHPを api/ として配置(Vercel用の api/*.js とは別物)
+          mkdir -p deploy/api
+          cp lolipop-migration/api/submit.php deploy/api/submit.php
+          cp lolipop-migration/api/news.php deploy/api/news.php
+          # .htaccess を配置(/api/submit、/api/news のURLをPHPに繋ぐ設定)
+          cp lolipop-migration/.htaccess deploy/.htaccess
+
+      - name: Deploy to Lolipop via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.LOLIPOP_FTP_HOST }}
+          username: ${{ secrets.LOLIPOP_FTP_USER }}
+          password: ${{ secrets.LOLIPOP_FTP_PASSWORD }}
+          local-dir: deploy/
+          server-dir: ${{ secrets.LOLIPOP_FTP_DIR }}
+          dangerous-clean-slate: false
+          exclude: |
+            **/config.php
