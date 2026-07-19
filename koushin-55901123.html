@@ -39,6 +39,7 @@
         <select id="category">
           <option>ニュース</option>
           <option>公演情報</option>
+          <option>チケットURL更新</option>
           <option>プロフィール変更依頼</option>
           <option>その他・要望</option>
         </select>
@@ -87,6 +88,16 @@
     var uploadStatus = document.getElementById("upload-status");
     var submitBtn = document.querySelector('#post-form button[type="submit"]');
     var dateInput = document.getElementById("date");
+    var categoryField = document.getElementById("category");
+
+    var defaultPlaceholder = bodyField.getAttribute("placeholder");
+    categoryField.addEventListener("change", function () {
+      if (categoryField.value === "チケットURL更新") {
+        bodyField.setAttribute("placeholder", "新しいチケット予約フォームのURLを貼ってください(カルテットオンラインなど)。確認後、チケットページに反映します。");
+      } else {
+        bodyField.setAttribute("placeholder", defaultPlaceholder);
+      }
+    });
 
     function uploadOne(file) {
       var formData = new FormData();

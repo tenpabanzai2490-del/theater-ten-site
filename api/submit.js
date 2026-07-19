@@ -19,7 +19,7 @@ var ENTRY = {
   body: "entry.1105532969"
 };
 
-var ALLOWED_CATEGORIES = ["ニュース", "公演情報", "プロフィール変更依頼", "その他・要望"];
+var ALLOWED_CATEGORIES = ["ニュース", "公演情報", "チケットURL更新", "プロフィール変更依頼", "その他・要望"];
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
