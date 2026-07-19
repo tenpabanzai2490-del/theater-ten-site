@@ -6,7 +6,7 @@
 //   "hidden" = 何も表示しない(準備中) / "waiting" = 「次回公演をお待ちください」 / "open" = 予約受付中
 var FEATURED_PRODUCTION = {
   status: "open",
-  ticketPageStatus: "waiting",
+  ticketPageStatus: "open",
   title: "つかまえてごらんなさい、箸で",
   subtitle: "Theater TEN Company No.38(+23)",
   dates: "2026年8月8日(土) 13:00・18:00 / 8月9日(日) 13:00・18:00",
