@@ -1,0 +1,2 @@
+# ロリポップ移行用の秘密情報(APIキーなど)。実体はサーバー上にのみ置く。
+lolipop-migration/api/config.php

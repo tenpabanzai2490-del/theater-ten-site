@@ -1,0 +1,19 @@
+# /api/submit、/api/news というURLのまま、実体のPHPファイルに繋ぐ設定。
+# これにより、フロントエンド(koushin-55901123.html、news-feed.js、ticket-page.js等)は
+# 一切変更せずに済む。
+
+RewriteEngine On
+RewriteRule ^api/submit$ api/submit.php [L]
+RewriteRule ^api/news$ api/news.php [L]
+
+# config.php(APIキーが入る)は、万一公開フォルダの中に置かれてしまっても
+# ブラウザから直接アクセスできないようにする(Apache 2.4以降の書き方)。
+<Files "config.php">
+  Require all denied
+</Files>
+
+# Apache 2.2系のサーバーの場合は上記の代わりに以下を使う(念のため両方書いておいてもよい):
+# <Files "config.php">
+#   Order deny,allow
+#   Deny from all
+# </Files>
