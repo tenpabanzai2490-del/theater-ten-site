@@ -1,6 +1,10 @@
 // チケットページ(ticket.html)。FEATURED_PRODUCTION(js/featured-production.js)の
 // status に応じて「予約受付中」「次回公演未定」の2状態を切り替える。
 //
+// 予約フォームはiframe埋め込みにせず、新しいタブでカルテットオンライン本家のページを開かせる。
+// セッションCookieに依存する多段階フォームのため、別ドメインのiframe内だと
+// サードパーティCookie制限で予約が完了しないことを実際に確認したため。
+//
 // チケットURLは、投稿窓口から「チケットURL更新」種別で投稿・公開OKされたものがあれば
 // そちらを優先して使う(コードを直さずスプレッドシートの承認だけで更新できるようにするため)。
 // 無ければ js/featured-production.js の ticketUrl を使う。
@@ -26,7 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
     .map(function (t) { return escapeHTML(t); })
     .join("<br>");
 
-  resolveTicketUrl(data.ticketUrl, startIframe);
+  var ticketLink = document.getElementById("ticket-link");
+  ticketLink.href = data.ticketUrl;
+
+  resolveTicketUrl(data.ticketUrl, function (ticketUrl) {
+    ticketLink.href = ticketUrl;
+  });
 });
 
 // 投稿窓口経由の「チケットURL更新」で公開OKされた最新の投稿があればそのURLを、無ければ既定のURLを返す。
@@ -58,31 +67,6 @@ function resolveTicketUrl(fallbackUrl, callback) {
 function isApproved(value) {
   var v = String(value || "").trim().toUpperCase();
   return v === "TRUE" || v === "1";
-}
-
-function startIframe(ticketUrl) {
-  var errorLink = document.getElementById("ticket-iframe-error-link");
-  errorLink.href = ticketUrl;
-
-  var iframe = document.getElementById("ticket-iframe");
-  var embedWrap = document.getElementById("ticket-embed-wrap");
-  var errorBox = document.getElementById("ticket-iframe-error");
-
-  // iframeの読み込み失敗はload/errorイベントだけでは確実に検知できないため、
-  // 一定時間経っても読み込み完了イベントが来なければフォールバック表示に切り替える。
-  var loaded = false;
-  var failTimer = setTimeout(function () {
-    if (loaded) return;
-    embedWrap.style.display = "none";
-    errorBox.style.display = "";
-  }, 8000);
-
-  iframe.addEventListener("load", function () {
-    loaded = true;
-    clearTimeout(failTimer);
-  });
-
-  iframe.src = ticketUrl;
 }
 
 function escapeHTML(str) {

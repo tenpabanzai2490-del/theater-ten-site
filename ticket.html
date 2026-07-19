@@ -40,23 +40,23 @@
 <div class="detail-wrap">
   <!-- 公演あり(status:"open")の時だけ表示 -->
   <div id="ticket-open" style="display:none">
-    <div id="ticket-info" style="margin-bottom:28px">
+    <div id="ticket-info" style="margin-bottom:32px">
       <h2 id="ticket-title" style="font-family:'Shippori Mincho',serif;font-size:22px;font-weight:600;margin:0 0 10px"></h2>
       <div id="ticket-meta" style="font-size:13px;line-height:1.9;color:var(--sub-warm-light)"></div>
     </div>
 
-    <div id="ticket-embed-wrap" style="border:1px solid var(--border-col);background:#fff">
-      <iframe id="ticket-iframe" title="チケット予約フォーム" style="width:100%;height:1450px;border:0;display:block"></iframe>
+    <!-- 予約フォーム自体はiframe埋め込みにしない: セッションCookieを使う仕組みのため、
+         別ドメインのiframe内だとブラウザのサードパーティCookie制限で予約が正しく完了しない
+         (実際に発生を確認済み)。安全のため、必ずカルテットオンライン本家のページを
+         新しいタブで開いてもらう形にしている。 -->
+    <div style="padding:40px;border:1px solid var(--border-col);background:#fff;text-align:center">
+      <p style="font-size:13px;color:var(--sub-warm-light);line-height:1.9;margin-bottom:24px">予約フォームは外部サイト(カルテットオンライン)で開きます。</p>
+      <a id="ticket-link" class="btn-primary" href="#" target="_blank" rel="noopener">予約はこちらから <span>→</span></a>
     </div>
 
     <div class="form-note" style="margin-top:20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-      <span>うまく表示されない場合はこちら</span>
+      <span>うまくいかない場合はこちら</span>
       <a class="btn-primary" href="contact.html">お気軽にお問合せください <span>→</span></a>
-    </div>
-
-    <div id="ticket-iframe-error" style="display:none;padding:32px;border:1px solid var(--border-col);text-align:center">
-      <p style="margin-bottom:20px">予約フォームの読み込みに時間がかかっています。</p>
-      <a id="ticket-iframe-error-link" class="btn-primary" href="#" target="_blank" rel="noopener">直接お申し込みください <span>→</span></a>
     </div>
   </div>
 
