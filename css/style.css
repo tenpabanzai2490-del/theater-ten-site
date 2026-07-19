@@ -474,6 +474,33 @@ img {
   z-index: 1;
 }
 
+.hero-slideshow-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.hero-slideshow-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(26, 26, 26, 0.35);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.hero-slideshow-dots .dot.active {
+  background: #1a1a1a;
+  transform: scale(1.3);
+}
+
 .feature-photo .caption {
   position: absolute;
   left: 20px;
