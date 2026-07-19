@@ -5,6 +5,7 @@
 RewriteEngine On
 RewriteRule ^api/submit$ api/submit.php [L]
 RewriteRule ^api/news$ api/news.php [L]
+RewriteRule ^api/contact-submit$ api/contact-submit.php [L]
 
 # config.php(APIキーが入る)は、万一公開フォルダの中に置かれてしまっても
 # ブラウザから直接アクセスできないようにする(Apache 2.4以降の書き方)。

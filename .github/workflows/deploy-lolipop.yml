@@ -41,6 +41,7 @@ jobs:
           mkdir -p deploy/api
           cp lolipop-migration/api/submit.php deploy/api/submit.php
           cp lolipop-migration/api/news.php deploy/api/news.php
+          cp lolipop-migration/api/contact-submit.php deploy/api/contact-submit.php
           # .htaccess を配置(/api/submit、/api/news のURLをPHPに繋ぐ設定)
           cp lolipop-migration/.htaccess deploy/.htaccess
 
