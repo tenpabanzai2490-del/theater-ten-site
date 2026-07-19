@@ -40,4 +40,13 @@ document.addEventListener("DOMContentLoaded", function () {
       goTo((current + 1) % slides.length);
     }, intervalMs);
   }
+
+  var slideshowEl = document.querySelector(".hero-slideshow");
+  if (slideshowEl) {
+    slideshowEl.style.cursor = "pointer";
+    slideshowEl.addEventListener("click", function () {
+      goTo((current + 1) % slides.length);
+      resetTimer();
+    });
+  }
 });
