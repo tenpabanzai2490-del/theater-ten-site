@@ -67,7 +67,10 @@
     injectStyle();
     var bar = buildBar();
     document.body.appendChild(bar);
-    loadNext(bar.querySelector(".trivia-text"));
+    // 開いた直後にいきなり流れ始めると忙しない印象になるため、少し間を置く
+    setTimeout(function () {
+      loadNext(bar.querySelector(".trivia-text"));
+    }, 2000);
   }
 
   function injectStyle() {
