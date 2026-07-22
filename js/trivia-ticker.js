@@ -70,7 +70,7 @@
     // 開いた直後にいきなり流れ始めると忙しない印象になるため、少し間を置く
     setTimeout(function () {
       loadNext(bar.querySelector(".trivia-text"));
-    }, 2000);
+    }, 3000);
   }
 
   function injectStyle() {
@@ -183,8 +183,8 @@
     textEl.style.setProperty("--tx-start", trackWidth + "px");
     textEl.style.setProperty("--tx-end", "-" + textWidth + "px");
 
-    var pixelsPerSecond = 90;
-    var duration = Math.max(10, Math.min(60, distance / pixelsPerSecond));
+    var pixelsPerSecond = 55;
+    var duration = Math.max(14, Math.min(90, distance / pixelsPerSecond));
     textEl.style.animationDuration = duration + "s";
 
     // reflowを挟んでからクラスを付け直すことで、確実にアニメーションを最初から開始させる
