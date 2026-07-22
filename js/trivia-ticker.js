@@ -99,7 +99,7 @@
     var bar = document.createElement("div");
     bar.id = "trivia-ticker";
     bar.innerHTML =
-      '<div class="trivia-track"><span class="trivia-text">読み込み中...</span></div>' +
+      '<div class="trivia-track"><span class="trivia-text"></span></div>' +
       '<button type="button" class="trivia-close" aria-label="閉じる">×</button>';
 
     bar.querySelector(".trivia-close").addEventListener("click", function () {
