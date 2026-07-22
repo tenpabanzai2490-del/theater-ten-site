@@ -25,10 +25,12 @@
       "#trivia-ticker .trivia-label{flex-shrink:0;padding:0 14px;height:100%;display:flex;align-items:center;" +
       "background:oklch(58% 0.12 35);color:#efece5;font-size:12px;letter-spacing:0.08em;font-weight:700;}" +
       "#trivia-ticker .trivia-track{flex:1;overflow:hidden;position:relative;height:100%;}" +
-      "#trivia-ticker .trivia-text{position:absolute;top:0;left:100%;height:100%;display:flex;align-items:center;" +
+      "#trivia-ticker .trivia-text{position:absolute;top:0;left:0;height:100%;display:flex;align-items:center;" +
       "white-space:nowrap;color:oklch(75% 0.13 80);font-size:13px;padding-right:40px;" +
-      "animation:trivia-scroll 22s linear infinite;}" +
-      "@keyframes trivia-scroll{from{transform:translateX(0);}to{transform:translateX(-200%);}}" +
+      "transform:translateX(100%);}" +
+      "#trivia-ticker .trivia-text.is-scrolling{animation-name:trivia-scroll;animation-timing-function:linear;" +
+      "animation-fill-mode:forwards;}" +
+      "@keyframes trivia-scroll{from{transform:translateX(var(--tx-start));}to{transform:translateX(var(--tx-end));}}" +
       "#trivia-ticker .trivia-close{flex-shrink:0;width:38px;height:100%;border:none;background:transparent;" +
       "color:#9a968d;font-size:16px;cursor:pointer;}" +
       "#trivia-ticker .trivia-close:hover{color:#efece5;}" +
@@ -71,16 +73,34 @@
   }
 
   function setText(textEl, text) {
+    // 一旦アニメーションを止めてから中身を差し替える(進行中のまま書き換えると
+    // 表示位置がおかしくなるため)。
+    textEl.classList.remove("is-scrolling");
     textEl.textContent = text;
-    // アニメーション時間を文章の長さに合わせて調整し、長い文章が窮屈にならないようにする
-    var duration = Math.max(18, Math.min(60, text.length * 0.35));
+
+    // 実際のトラック幅・文章幅(px)から移動距離を出す。
+    // 「文章の幅に対する相対%」で動かしていた旧実装では、文章がトラックより
+    // 短いと画面外まで届く前にループが巻き戻り、「途中で消える」ように見えていた。
+    var trackWidth = textEl.parentElement.clientWidth;
+    var textWidth = textEl.scrollWidth;
+    var distance = trackWidth + textWidth; // 右端の外→左端の外まで、の合計距離
+
+    textEl.style.setProperty("--tx-start", trackWidth + "px");
+    textEl.style.setProperty("--tx-end", "-" + textWidth + "px");
+
+    var pixelsPerSecond = 90;
+    var duration = Math.max(10, Math.min(60, distance / pixelsPerSecond));
     textEl.style.animationDuration = duration + "s";
 
-    // 1周し終わったら次の雑学を読み込む
+    // reflowを挟んでからクラスを付け直すことで、確実にアニメーションを最初から開始させる
+    void textEl.offsetWidth;
+    textEl.classList.add("is-scrolling");
+
+    // 画面外まで流れ切ったら次の雑学を読み込む
     textEl.addEventListener(
-      "animationiteration",
+      "animationend",
       function handler() {
-        textEl.removeEventListener("animationiteration", handler);
+        textEl.removeEventListener("animationend", handler);
         loadNext(textEl);
       },
       { once: true }
